@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .fondoClaro {
+        @apply bg-gradient-to-br from-violet-400 via-pink-400 to-blue-400 h-screen
+    }
+    .fondoOscuro {
+        @apply bg-zinc-900 h-screen
+    }
+    .titulo {
+        @apply bg-gradient-to-br from-white via-slate-300  
+        to-white bg-clip-text text-9xl font-extrabold drop-shadow-hard
+        text-transparent absolute top-8 
+    }
+    .main {
+        @apply flex flex-col w-screen h-screen place-content-center place-items-center
+    }
+    .form {
+        @apply w-1/3 p-12 flex flex-col gap-7 bg-gradient-to-br from-violet-200 via-blue-200 to-pink-200 shadow-lesshard shadow-black
+    }
+    .input {
+        @apply w-full h-[35px] pl-2 placeholder:text-center placeholder:text-pink-300 placeholder:font-bold outline-none focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-none shadow-lesshard shadow-black transition-all duration-[.2s] ease-in-out
+    }
+    .input-invalid {
+        @apply input
+    }
+    .button {
+        @apply w-full h-[40px] text-center font-bold accent-pink-500 px-8 py-2 bg-gradient-to-br from-violet-400 to-pink-400 text-white shadow-hard shadow-black
+        active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-[.2s] ease-in-out
+    }
+    .error {
+        @apply visible text-red-600 font-bold text-sm
+    }
+    .interfaz {
+        @apply relative flex flex-col gap-2 w-1/3 h-5/6 place-content-center pt-12 px-4 pb-4 bg-gradient-to-br from-violet-400 via-blue-100 to-pink-300 shadow-lesshard
+    }
+    .chat {
+        @apply w-full h-full px-1 py-4 flex flex-col gap-5 place-content-start overflow-x-hidden overflow-y-hidden scroll-smooth hover:overflow-y-scroll scrollbar-none  /* shadow-lesshard shadow-black bg-gradient-to-br from-violet-100 via-violet-300 to-violet-100 */
+    }
+    .mensajeCard {
+        @apply flex flex-col px-4 py-1 rounded font-bold place-content-start min-w-24 max-w-[270px] h-auto
+    }
+    .nombre {
+        @apply text-[10px] text-white
+    }
+    .mensaje {
+        @apply text-white text-lg text-wrap break-words
+    }
+    .teclado {
+        @apply flex place-content-center gap-2
+    }
+    .inputTexto {
+        @apply w-3/4 h-auto resize-none max-h-12 scrollbar-none p-1 outline-none shadow-lesshard
+    }
+    .enviar {
+        @apply w-1/4 h-12 text-center font-bold accent-pink-500 px-2 outline-none bg-gradient-to-br from-violet-400 to-pink-400 text-white shadow-lesshard shadow-black
+        active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-[.1s] ease-in-out
+    }
+    .chatTitulo {
+        @apply titulo text-3xl top-1 left-[50%] translate-x-[-50%]
+    }
+}
