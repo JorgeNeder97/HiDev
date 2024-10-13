@@ -1,3 +1,6 @@
+import { DarkModeButton } from "#components/DarkModeButton/DarkModeButton.tsx";
+import { LogOutButton } from "#components/LogOutButton/LogOutButton.tsx";
+import { MarcaPersonal } from "#components/MarcaPersonal/MarcaPersonal.tsx";
 import { useState, useEffect, FormEvent, KeyboardEvent, useRef } from "react";
 import io from "socket.io-client";
 
@@ -8,40 +11,47 @@ interface ChatProps {
 }
 
 interface Message {
-    body: string,
-    from?: string,
-    isMine?: boolean,
+    body: string;
+    hour: string;
+    from?: string;
+    isMine?: boolean;
 }
 
 export const Chat: React.FC<ChatProps> = ({ nombre }) => {
-
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<Message[]>([]);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(message === "" || message === null) return
+        const fecha = new Date();
+        const timestamp = `${fecha.getHours()}:${
+            fecha.getMinutes().toString().length == 1
+                ? "0" + fecha.getMinutes()
+                : fecha.getMinutes()
+        }`;
+        if (message === "" || message === null) return;
         const newMessage = {
             body: message,
             from: nombre,
+            hour: timestamp,
             isMine: true,
-        }
+        };
         setMessages([...messages, newMessage]);
-        socket.emit('message', newMessage);
+        socket.emit("message", newMessage);
         setMessage("");
-    }
+    };
 
     useEffect(() => {
-        socket.on('message', reciveMessage);
-        
+        socket.on("message", reciveMessage);
+
         return () => {
-            socket.off('message', reciveMessage);
-        }
+            socket.off("message", reciveMessage);
+        };
     }, []);
 
     const reciveMessage = (message: Message) => {
         setMessages((state) => [...state, message]);
-    }
+    };
 
     const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         // Si presiona Enter sin Shift, se envía el formulario
@@ -51,42 +61,59 @@ export const Chat: React.FC<ChatProps> = ({ nombre }) => {
         }
     };
 
-     // Referencia al contenedor del chat
-     const messagesEndRef = useRef<HTMLUListElement>(null);
+    // Referencia al contenedor del chat
+    const messagesEndRef = useRef<HTMLUListElement>(null);
 
-     // Función para hacer scroll hacia el final
-     const scrollToBottom = () => {
-         if (messagesEndRef.current) {
-             messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-         }
-     };
- 
-     // Scroll hacia abajo cuando cambia la lista de mensajes
-     useEffect(() => {
-         scrollToBottom();
-     }, [messages]);
+    // Función para hacer scroll hacia el final
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+        }
+    };
+
+    // Scroll hacia abajo cuando cambia la lista de mensajes
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     return (
-        <div className="fondoClaro main">
-            <div className="interfaz">
-                <h3 className="chatTitulo">Chat General</h3>
-                <ul ref={messagesEndRef} className="chat">
-                    {
-                        messages.map((message, i) => {
-                            return (
-                                <div key={i} className={`mensajeCard ${message.isMine ? "bg-pink-400 ml-auto": "bg-violet-400 mr-auto"}`} > 
-                                    <span className="nombre">{message.from}</span>
-                                    <li className="mensaje">{message.body}</li>
-                                </div>
-                            );
-                        })
-                    }
+        <div className="dev-fondo dev-main relative">
+            <div className="dev-interfaz">
+                <h3 className="dev-chatTitulo">Chat General</h3>
+                <ul ref={messagesEndRef} className="dev-chat">
+                    {messages.map((message, i) => {
+                        return (
+                            <div
+                                key={i}
+                                className={`dev-mensajeCard ${
+                                    message.isMine
+                                        ? "bg-pink-400 ml-auto dark:bg-violet-500"
+                                        : "bg-violet-400 mr-auto dark:bg-zinc-600"
+                                }`}
+                            >
+                                <span className="dev-nombre">
+                                    {message.from}
+                                </span>
+                                <li className="dev-mensaje">{message.body}</li>
+                                <span className="dev-hora">{message.hour}</span>
+                            </div>
+                        );
+                    })}
                 </ul>
-                <form onSubmit={handleSubmit} className="teclado">
-                    <textarea placeholder="Mensaje" className="inputTexto" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown} />
-                    <button className="enviar">Enviar</button>
+                <form onSubmit={handleSubmit} className="dev-teclado">
+                    <textarea
+                        placeholder="Mensaje"
+                        className="dev-inputTexto"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button className="dev-enviar">Enviar</button>
                 </form>
             </div>
+            <LogOutButton />
+            <MarcaPersonal />
+            <DarkModeButton />
         </div>
     );
 };

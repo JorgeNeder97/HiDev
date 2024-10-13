@@ -1,3 +1,4 @@
+import daisyui from 'daisyui';
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: "class",
@@ -12,9 +13,14 @@ export default {
                 'hard': '2px 2px 1px rgba(0, 0, 0, 1)',
                 'small': '1px 1px 1px rgba( 0, 0, 0, 1)',
             },
+            backgroundSize: {
+                'Doble': '200%',
+                'OneAndHalf': '150% 40px'
+            }
         },
     },
     plugins: [
         require('tailwind-scrollbar'),
+        daisyui
     ],
 };

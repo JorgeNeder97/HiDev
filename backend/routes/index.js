@@ -7,6 +7,6 @@ router.get('/', indexController.sayHi);
 
 router.post('/login', indexController.login);
 
-router.get('/verify', indexController.verifyToken);
+router.get('/logout', indexController.logout);
 
 export default router;

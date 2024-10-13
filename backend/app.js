@@ -4,7 +4,6 @@ import { Server as SocketServer } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -29,6 +28,7 @@ io.on('connection', socket => {
         // Reenvia un evento message con datos (envia el mensaje) a todos los clientes conectados menos a al que envió el mensaje al servidor
         socket.broadcast.emit('message', {
             body: data.body,
+            hour: data.hour,
             from: data.from,
         });
     });
@@ -39,6 +39,7 @@ console.log('Server on port ', 3000);
 
 app.use(cors({
     origin: "http://localhost:5173", 
+    methods: ["GET", "POST"],
     credentials: true // Habilitar el uso de cookies
 }));
 
@@ -48,6 +49,5 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 

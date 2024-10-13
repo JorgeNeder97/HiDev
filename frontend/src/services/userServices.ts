@@ -9,6 +9,10 @@ export const loginRequest = async (data: Usuario) => {
     });
 }
 
-export const verifyTokenRequest = async () => {
-    return await axios.get('/verify');
+export const logOutRequest = async () => {
+    return await axios.get('/logout', {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 }

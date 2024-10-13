@@ -1,3 +1,5 @@
+import pkg from 'jsonwebtoken';
+const { verify } = pkg;
 import createAccestoken from '../modules/jwt.js';
 
 const indexController = {
@@ -18,23 +20,9 @@ const indexController = {
             });
         }
     },
-    verifyToken: async (req, res) => {
-
-        const { token } = req.cookies;
-
-        // Funcion que hace la verificación con JsonWebToken.
-        function verifyTkn(token) {
-            verify(token, TOKEN_SECRET, async (err) => {
-                if (err)
-                return res
-                    .status(401)
-                    .json({ message: "Unauthorized: invalid token" });
-            
-                else return
-            });
-        }
-
-        return verifyTkn(token);
+    logout: (req, res) => {
+        res.cookie("token", "", { expires: new Date(0) });
+        return res.sendStatus(200);
     }
 
 }
