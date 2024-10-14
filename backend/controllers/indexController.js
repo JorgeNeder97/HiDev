@@ -19,8 +19,6 @@ const indexController = {
                 secure: true,
                 sameSite: "None",
                 maxAge: 24 * 60 * 60 * 1000,
-                domain: "https://hidev-client.onrender.com",
-                path: "/",
             });
             res.json({
                 nombre: usuario,
