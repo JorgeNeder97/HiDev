@@ -10,13 +10,6 @@ export const MainApp = () => {
     const [nombre, setNombre] = useState<string>("");
 
     useEffect(() => {
-        const storedNombre = Cookies.get("nombre");
-        if(storedNombre) {
-            setNombre(storedNombre);
-        }
-    }, []);
-
-    useEffect(() => {
         if(nombre) Cookies.set("nombre", nombre);
     }, [nombre]);
 
