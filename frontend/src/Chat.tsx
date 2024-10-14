@@ -87,8 +87,8 @@ export const Chat: React.FC<ChatProps> = ({ nombre }) => {
                                 key={i}
                                 className={`dev-mensajeCard ${
                                     message.isMine
-                                        ? "bg-pink-400 ml-auto dark:bg-violet-500"
-                                        : "bg-violet-400 mr-auto dark:bg-zinc-600"
+                                        ? "bg-pink-400 ml-auto dark:bg-violet-500 animate-sliceRight"
+                                        : "bg-violet-400 mr-auto dark:bg-zinc-600 animate-sliceLeft"
                                 }`}
                             >
                                 <span className="dev-nombre">

@@ -4,6 +4,9 @@ import { loginRequest } from "#services/userServices.ts";
 import { Usuario } from '#models/Usuario.ts';
 import { MarcaPersonal } from "#components/MarcaPersonal/MarcaPersonal.tsx";
 import { DarkModeButton } from "#components/DarkModeButton/DarkModeButton.tsx";
+import MouseDown from '#assets/MouseDown.mp3';
+import MouseUp from '#assets/MouseUp.mp3';
+import inputSound from '#assets/inputSound.mp3';
 
 interface AppProps {
     nombre: (nombre:string) => void
@@ -32,6 +35,21 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
         }
     });
 
+    const onMouseDown = () => {
+        const audio = new Audio(MouseDown);
+        audio.play();
+    };
+
+    const onMouseUp = () => {
+        const audio = new Audio(MouseUp);
+        audio.play();
+    };
+
+    const onFocus = () => {
+        const audio = new Audio(inputSound);
+        audio.play();
+    }
+
     return (
         <div className="dev-fondo dev-main relative">
             <h1 className="dev-titulo">HiDev</h1>
@@ -56,6 +74,7 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
                         }
                     })}
                     onChange={()=> clearErrors("nombre")}
+                    onFocus={onFocus}
                 />
                 <div className="h-[5px] translate-y-[-9px]">
                     <span className={errors && errors.nombre ? "dev-error opacity-1 transition-all duration-[.5s] ease-in-out" : "dev-error opacity-0"}>{errors.nombre && errors.nombre.message ? errors.nombre.message.toString() : ""}</span>
@@ -74,11 +93,12 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
                         }
                     })}
                     onChange={()=> clearErrors("contraseña")}
+                    onFocus={onFocus}
                 />
                 <div className="h-[5px] translate-y-[-9px]">
                     <span className={errors && errors.contraseña ? "dev-error opacity-1 transition-all duration-[.5s] ease-in-out" : "dev-error opacity-0"}>{errors.contraseña && errors.contraseña.message ? errors.contraseña.message.toString() : ""}</span>
                 </div>
-                <input type="submit" className="dev-button" value="Entrar al Chat" />
+                <input type="submit" className="dev-button" value="Entrar al Chat" onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
             </form>
             <MarcaPersonal />
             <DarkModeButton />

@@ -1,4 +1,5 @@
 import daisyui from 'daisyui';
+import { transform } from 'typescript';
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: "class",
@@ -16,6 +17,20 @@ export default {
             backgroundSize: {
                 'Doble': '200%',
                 'OneAndHalf': '150% 40px'
+            },
+            keyframes: {
+                sliceRight: {
+                    '0%': {transform: 'translateX(100%)', opacity: '0.5'},
+                    '100%': {transform: 'translateX(0%)', opacity: '1'},
+                },
+                sliceLeft: {
+                    '0%': {transform: 'translateX(-100%)', opacity: '0.5'},
+                    '100%': {transform: 'translateX(0%)', opacity: '1'},
+                }
+            },
+            animation: {
+                sliceRight: 'sliceRight .5s ease',
+                sliceLeft: 'sliceLeft .5s ease'
             }
         },
     },
