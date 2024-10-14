@@ -17,7 +17,6 @@ const indexController = {
             });
             res.cookie("token", token, {
                 secure: true,
-                sameSite: "Strict",
                 maxAge: 24 * 60 * 60 * 1000,
             });
             res.json({
