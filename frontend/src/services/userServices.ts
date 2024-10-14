@@ -5,7 +5,8 @@ export const loginRequest = async (data: Usuario) => {
     return await axios.post('/login', data, {
         headers: {
             "Content-Type": "application/json",
-        }
+        },
+        withCredentials: true,
     });
 }
 
