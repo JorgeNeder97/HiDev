@@ -4,7 +4,6 @@ import { loginRequest, verifyTokenRequest } from "#services/userServices.ts";
 import { Usuario } from '#models/Usuario.ts';
 import { MarcaPersonal } from "#components/MarcaPersonal/MarcaPersonal.tsx";
 import { DarkModeButton } from "#components/DarkModeButton/DarkModeButton.tsx";
-import Cookies from 'js-cookie';
 import MouseDown from '#assets/MouseDown.mp3';
 import MouseUp from '#assets/MouseUp.mp3';
 import inputSound from '#assets/inputSound.mp3';
