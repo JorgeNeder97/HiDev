@@ -6,7 +6,6 @@ export const loginRequest = async (data: Usuario) => {
         headers: {
             "Content-Type": "application/json",
         },
-        withCredentials: true,
     });
 }
 
