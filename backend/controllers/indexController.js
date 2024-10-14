@@ -16,8 +16,11 @@ const indexController = {
                 nombre: usuario,
             });
             res.cookie("token", token, {
-                sameSite:'None',
+                secure: true,
+                sameSite: "None",
                 maxAge: 24 * 60 * 60 * 1000,
+                domain: "https://hidev-client.onrender.com",
+                path: "/",
             });
             res.json({
                 nombre: usuario,
