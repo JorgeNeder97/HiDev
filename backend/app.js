@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new SocketServer(server, {
     cors: {
-        origin: "https://hidev-client.onrender.com/",
+        origin: process.env.CORS_URL,
         methods: ["GET", "POST"],
         credentials: true,
     }
@@ -38,7 +38,7 @@ server.listen(3000);
 console.log('Server on port ', 3000);
 
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: process.env.CORS_URL, 
     methods: ["GET", "POST"],
     credentials: true // Habilitar el uso de cookies
 }));
