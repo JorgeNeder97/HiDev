@@ -54,8 +54,6 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
 
     useEffect(() => {
         const verifyToken = async () => {
-            const token = Cookies.get("token")?.toString();
-            if(!token) return
             const res = await verifyTokenRequest();
             if(res.status === 200) return navigate("/protected/chat");
         }
