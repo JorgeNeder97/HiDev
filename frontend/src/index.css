@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .dev-fondo {
+        @apply bg-gradient-to-br from-violet-400 via-pink-400 to-blue-400 min-h-screen 
+        dark:bg-gradient-to-br dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-950 
+        lg:h-screen
+        transition-all duration-[1s] ease-in-out
+    }
+    
+    .dev-titulo {
+        @apply bg-gradient-to-br from-white via-slate-300 to-white bg-clip-text 
+        text-7xl font-extrabold drop-shadow-hard text-transparent absolute top-8 select-none
+        lg:text-9xl lg:top-3
+    }
+    .dev-main {
+        @apply flex flex-col w-screen min-h-screen lg:h-screen place-content-center place-items-center
+    }
+    .dev-form {
+        @apply bg-gradient-to-br from-violet-200 via-blue-200 to-pink-200
+        dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-700 dark:to-zinc-800
+        lg:w-1/3 lg:p-12 lg:gap-3
+        shadow-lesshard shadow-black w-[85%] py-8 px-5 flex flex-col gap-3 my-[200px]
+    }
+    .dev-input {
+        @apply bg-white pl-2 w-full h-[35px] text-pink-400 text-center font-bold outline-none 
+        shadow-lesshard shadow-black 
+        placeholder:text-center placeholder:text-pink-300 placeholder:font-bold 
+        dark:text-violet-600
+        dark:placeholder:text-violet-400
+        focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-none 
+        transition-all duration-[.2s] ease-in-out
+    }
+    .dev-button {
+        @apply bg-gradient-to-br from-pink-400 via-pink-300 to-violet-400 bg-OneAndHalf bg-left-top
+        w-full h-[40px] text-center font-bold accent-pink-500 px-8 py-2 text-white 
+        shadow-hard shadow-black mt-8
+        dark:bg-gradient-to-br dark:from-violet-700 dark:via-violet-400 dark:to-violet-600
+        hover:bg-right
+        active:translate-x-1 active:translate-y-1 active:shadow-none 
+        transition-all duration-[.2s] ease-in-out
+    }
+    .dev-error {
+        @apply visible text-red-600 font-bold text-sm
+    }
+    .dev-interfaz {
+        @apply relative bg-gradient-to-br from-violet-400 via-blue-200 to-pink-300 
+        flex flex-col gap-2 w-[85%] h-[90vh] my-32 place-content-center pt-12 px-3 pb-3  shadow-lesshard
+        lg:w-1/3 lg:h-[100vh] lg:pt-12 lg:px-4 lg:pb-4 lg:my-8
+        dark:bg-gradient-to-br dark:from-zinc-500 dark:via-zinc-400 dark:to-zinc-500
+        shadow-black
+    }
+    .dev-chat {
+        @apply w-full h-full px-1 py-4 flex flex-col gap-5 place-content-start overflow-x-hidden 
+        overflow-y-hidden scroll-smooth scrollbar-none
+        hover:overflow-y-scroll  
+    }
+    .dev-mensajeCard {
+        @apply relative flex flex-col pl-2 pr-10 pt-2 pb-5 rounded font-bold place-content-start 
+        gap-[2px] min-w-32 max-w-[270px] h-auto drop-shadow-small shadow-black
+    }
+    .dev-nombre {
+        @apply text-[11px] text-white drop-shadow-small tracking-widest
+    }
+    .dev-mensaje {
+        @apply text-white text-lg text-wrap break-words
+    }
+    .dev-hora {
+        @apply absolute text-xs text-white drop-shadow-small bottom-1 right-2
+    }
+    .dev-teclado {
+        @apply flex place-content-center gap-2
+    }
+    .dev-inputTexto {
+        @apply bg-white w-3/4 h-auto resize-none max-h-12 scrollbar-none p-1 outline-none 
+        shadow-lesshard text-pink-400 shadow-black
+        dark:text-violet-600
+        dark:placeholder:text-violet-400
+        placeholder:italic placeholder:text-pink-300 
+        active:translate-x-1 active:translate-y-1 active:shadow-none
+        transition-all duration-[.2s] ease-in-out font-bold
+    }
+    .dev-enviar {
+        @apply bg-gradient-to-br from-violet-400 via-pink-300 to-pink-400 bg-Doble bg-right
+        w-1/4 h-12 text-center font-bold px-2 outline-none text-white 
+        shadow-lesshard shadow-black tracking-widest
+        dark:bg-gradient-to-br dark:from-violet-700 dark:via-violet-400 dark:to-violet-600
+        hover:tracking-wide hover:px-[8.5px] hover:bg-left
+        active:translate-x-[2px] active:translate-y-[2px] active:shadow-none 
+        transition-all duration-[.2s] ease-in-out
+    }
+    .dev-chatTitulo {
+        @apply dev-titulo text-2xl top-[-40px] left-[50%] translate-x-[-50%] min-w-[170px]
+        lg:text-3xl lg:left-[50%] lg:translate-x-[-50%] lg:top-0
+    }
+    .dev-logOutButton {
+        @apply absolute top-4 right-[50%] translate-x-[50%] min-w-[170px]
+        bg-gradient-to-br from-violet-400  via-pink-300 to-violet-400 bg-Doble bg-right 
+        py-3 px-6 shadow-hard shadow-black font-bold text-white tracking-wider
+        dark:bg-gradient-to-br dark:from-violet-700 dark:via-violet-400 dark:to-violet-600
+        lg:top-8 lg:right-12 lg:translate-x-0
+        hover:bg-left hover:tracking-normal hover:px-[29.5px] 
+        active:translate-x-1 active:translate-y-1 active:shadow-none 
+        transition-all duration-[.2s] ease-in-out 
+    }
+    .dev-darkModeButton {
+        @apply absolute top-[135px] left-[50%] translate-x-[-50%] text-white
+        lg:top-6 lg:left-14
+    }
+
+    
+}
