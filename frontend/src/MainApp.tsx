@@ -8,6 +8,14 @@ import Cookies from 'js-cookie';
 
 export const MainApp = () => {
     const [nombre, setNombre] = useState<string>("");
+
+    useEffect(() => {
+        const storedNombre = Cookies.get("nombre");
+        if(storedNombre) {
+            setNombre(storedNombre);
+        }
+    }, []);
+
     useEffect(() => {
         if(nombre) Cookies.set("nombre", nombre);
     }, [nombre]);
@@ -15,7 +23,6 @@ export const MainApp = () => {
     return (
         <Routes>
             <Route path="/login" element={<App nombre={setNombre} />} />
-
             <Route
                 path="/protected/*"
                 element={
