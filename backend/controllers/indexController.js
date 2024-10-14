@@ -19,8 +19,6 @@ const indexController = {
                 secure: true,
                 sameSite: "Strict",
                 maxAge: 24 * 60 * 60 * 1000,
-                domain: process.env.CORS_URL,
-                path: "/",
             });
             res.json({
                 nombre: usuario,
