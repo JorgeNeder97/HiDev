@@ -5,7 +5,7 @@ export const ProtectedRoutes = () => {
 
     const token = Cookies.get('token');
 
-    if (!token) return <Navigate to="/login" replace />;
+    // if (!token) return <Navigate to="/login" replace />;
 
     return <Outlet />;
 };
