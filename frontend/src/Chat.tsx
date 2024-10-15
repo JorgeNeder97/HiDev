@@ -2,14 +2,9 @@ import { DarkModeButton } from "#components/DarkModeButton/DarkModeButton.tsx";
 import { LogOutButton } from "#components/LogOutButton/LogOutButton.tsx";
 import { MarcaPersonal } from "#components/MarcaPersonal/MarcaPersonal.tsx";
 import { useState, useEffect, FormEvent, KeyboardEvent, useRef } from "react";
-import Cookies from 'js-cookie';
 import io from "socket.io-client";
 
 const socket = io(import.meta.env.VITE_BASE_URL);
-
-interface ChatProps {
-    nombre: string;
-}
 
 interface Message {
     body: string;
@@ -18,11 +13,9 @@ interface Message {
     isMine?: boolean;
 }
 
-export const Chat: React.FC<ChatProps> = ({ nombre }) => {
+export const Chat: React.FC = () => {
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<Message[]>([]);
-
-    const nombreCookie = Cookies.get("nombre");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -32,10 +25,11 @@ export const Chat: React.FC<ChatProps> = ({ nombre }) => {
                 ? "0" + fecha.getMinutes()
                 : fecha.getMinutes()
         }`;
+        const nombreGuardado = localStorage.getItem("nombre");
         if (message === "" || message === null) return;
         const newMessage = {
             body: message,
-            from: nombre ? nombre : nombreCookie,
+            from: nombreGuardado ? nombreGuardado : "",
             hour: timestamp,
             isMine: true,
         };

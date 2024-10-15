@@ -1,21 +1,14 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { App } from "./App";
 import { Chat } from "./Chat";
-import { useEffect, useState } from "react";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import Cookies from 'js-cookie';
 
 
 export const MainApp = () => {
-    const [nombre, setNombre] = useState<string>("");
-
-    useEffect(() => {
-        if(nombre) Cookies.set("nombre", nombre);
-    }, [nombre]);
 
     return (
         <Routes>
-            <Route path="/login" element={<App nombre={setNombre} />} />
+            <Route path="/login" element={<App />} />
             <Route
                 path="/protected/*"
                 element={
@@ -23,7 +16,7 @@ export const MainApp = () => {
                         <Route element={<ProtectedRoutes />}>
                             <Route
                                 path="chat"
-                                element={<Chat nombre={nombre} />}
+                                element={<Chat />}
                             />
                         </Route>
                     </Routes>

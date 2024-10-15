@@ -4,21 +4,17 @@ import { loginRequest, verifyTokenRequest } from "#services/userServices.ts";
 import { Usuario } from '#models/Usuario.ts';
 import { MarcaPersonal } from "#components/MarcaPersonal/MarcaPersonal.tsx";
 import { DarkModeButton } from "#components/DarkModeButton/DarkModeButton.tsx";
-import Cookies from 'js-cookie';
 import MouseDown from '#assets/MouseDown.mp3';
 import MouseUp from '#assets/MouseUp.mp3';
 import inputSound from '#assets/inputSound.mp3';
 import { useEffect } from "react";
 
-interface AppProps {
-    nombre: (nombre:string) => void
-}
 
-export const App: React.FC<AppProps> = ({ nombre }) => {
+
+export const App: React.FC = () => {
 
     const { register, formState: { errors }, handleSubmit, clearErrors } = useForm();
     
-    const setNombre = nombre;
 
     const navigate = useNavigate()
 
@@ -30,8 +26,10 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
             contraseña: data.contraseña,
         }
         if(data.contraseña == correctPassword) {
-            setNombre(data.nombre);
-            await loginRequest(loginUser);
+            const response = await loginRequest(loginUser);
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            localStorage.setItem("nombre", data.nombre);
             return navigate("/protected/chat");
         }
     });
@@ -53,9 +51,9 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
 
     useEffect(() => {
         const verifyToken = async () => {
-            const token = Cookies.get("token");
+            const token = localStorage.getItem("token");
             if(!token) return
-            let res = await verifyTokenRequest();
+            const res = await verifyTokenRequest(token);
             if(res.status == 200) return navigate("/protected/chat");
             else return
         }

@@ -12,22 +12,13 @@ const indexController = {
         if (contraseña !== process.env.PASSWORD)
             return res.status(400).json({ message: "Contraseña inválida" });
         else if (contraseña === process.env.PASSWORD) {
-            const token = await createAccestoken({
-                nombre: usuario,
-            });
-            res.cookie("token", token, {
-                secure: true,
-                sameSite: "None",
-                maxAge: 24 * 60 * 60 * 1000,
-            });
-            res.json({
-                nombre: usuario,
-                token,
-            });
+            const token = jwt.sign({ nombre: usuario }, process.env.TOKEN_SECRET, { expiresIn: '1d' });
+            res.setHeader('Authorization', `Bearer ${token}`);
+            return res.json({ message: 'Inicio de sesión exitoso', token });
         }
     },
     verifyToken: (req, res) => {
-        const token = req.cookies.token;
+        const token = req.headers['authorization']?.split(' ')[1]; // Obtener el token del encabezado
         if (!token)
             return res.status(401).json({ message: "Unauthorized - No Token" });
 
@@ -37,11 +28,6 @@ const indexController = {
             }
             return res.status(200).json({ message: "Authorized!" });
         });
-    },
-    logout: (req, res) => {
-        res.clearCookie("token");
-        res.clearCookie("nombre");
-        return res.sendStatus(200);
     },
 };
 
