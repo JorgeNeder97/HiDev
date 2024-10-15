@@ -6,8 +6,8 @@ export const LogOutButton = () => {
     const navigate = useNavigate()
 
     const onButtonClick = async() => {
-        let res = await logOutRequest();
-        if(res.status === 200) return navigate("/login");
+        await logOutRequest();
+        return navigate("/login");
     }
 
     return (
