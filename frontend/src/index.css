@@ -101,8 +101,9 @@
         py-3 px-6 shadow-hard shadow-black font-bold text-white tracking-wider
         dark:bg-gradient-to-br dark:from-violet-700 dark:via-violet-400 dark:to-violet-600
         lg:top-8 lg:right-12 lg:translate-x-0
+        lg:active:translate-x-1 lg:active:translate-y-1 lg:active:shadow-none
         hover:bg-left hover:tracking-normal hover:px-[29.5px] 
-        active:translate-x-1 active:translate-y-1 active:shadow-none 
+        active:translate-x-[53%] active:translate-y-1 active:shadow-none
         transition-all duration-[.2s] ease-in-out 
     }
     .dev-darkModeButton {
