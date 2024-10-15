@@ -39,8 +39,8 @@ const indexController = {
         });
     },
     logout: (req, res) => {
-        res.cookie("token", "", { expires: new Date(0) });
-        res.cookie("nombre", "", { expires: new Date(0) });
+        res.clearCookie("token");
+        res.clearCookie("nombre");
         return res.sendStatus(200);
     },
 };
