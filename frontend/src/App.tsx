@@ -53,10 +53,10 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
 
     useEffect(() => {
         const verifyToken = async () => {
-            const token = Cookies.get("token")?.toString();
+            const token = Cookies.get("token");
             if(!token) return
-            const res = await verifyTokenRequest();
-            if(res.status === 200) return navigate("/protected/chat");
+            let res = await verifyTokenRequest();
+            if(res.status == 200) return navigate("/protected/chat");
             else return
         }
 
