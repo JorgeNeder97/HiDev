@@ -30,8 +30,8 @@ export const App: React.FC<AppProps> = ({ nombre }) => {
             contraseña: data.contraseña,
         }
         if(data.contraseña == correctPassword) {
-            setNombre(data.nombre);
             const res = await loginRequest(loginUser);
+            setNombre(data.nombre);
             if(res.status == 200) return navigate("/protected/chat");
             console.log('Usuario no logueado');
         }
