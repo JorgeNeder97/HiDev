@@ -14,7 +14,7 @@ const server = http.createServer(app);
 const io = new SocketServer(server, {
     cors: {
         origin: process.env.CORS_URL,
-        methods: ["GET", "POST"],
+        methods: ["GET", "POST", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
     },
@@ -41,7 +41,7 @@ console.log("Server on port ", 3000);
 app.use(
     cors({
         origin: process.env.CORS_URL,
-        methods: ["GET", "POST"],
+        methods: ["GET", "POST", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true, // Habilitar el uso de cookies
     })
