@@ -5,7 +5,7 @@ import { useState, useEffect, FormEvent, KeyboardEvent, useRef } from "react";
 import Cookies from 'js-cookie';
 import io from "socket.io-client";
 
-const socket = io(import.meta.env.VITE_IO_URL);
+const socket = io(import.meta.env.VITE_BASE_URL);
 
 interface ChatProps {
     nombre: string;
